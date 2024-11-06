@@ -36,41 +36,131 @@ public class AuthorizationService {
 
     private Object register(Object user) {
         if (user instanceof JobProvider) {
-        	System.out.println("Enter Organization Name: ");
-            String organizationName = scanner.nextLine();
+        	 // Organization Name
+            String organizationName;
+            while (true) {
+                System.out.println("Enter Organization Name: ");
+                organizationName = scanner.nextLine().trim();
+                if (!organizationName.isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Organization Name cannot be empty. Please enter the name of the organization.");
+                }
+            }
 
-            System.out.println("Enter Organization Type: ");
-            String organizationType = scanner.nextLine();
+            // Organization Type
+            String organizationType;
+            while (true) {
+                System.out.println("Enter Organization Type: ");
+                organizationType = scanner.nextLine().trim();
+                if (!organizationType.isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Organization Type cannot be empty. Please enter the type of the organization.");
+                }
+            }
 
-            System.out.println("Enter Sector: ");
-            String sector = scanner.nextLine();
-
-            System.out.println("Enter Email: ");
-            String email = scanner.nextLine();
-
-            System.out.println("Enter Password: ");
-            String password = scanner.nextLine();
+            // Sector
+            String sector;
+            while (true) {
+                System.out.println("Enter Sector: ");
+                sector = scanner.nextLine().trim();
+                if (!sector.isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Sector cannot be empty. Please enter the sector.");
+                }
+            }
+            String email;
+            while (true) {
+                System.out.println("Enter Email: ");
+                email = scanner.nextLine().trim();
+                if (!email.isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Email cannot be empty. Please enter your email.");
+                }
+            }
+            
+            String password;
+            while (true) {
+                System.out.println("Enter Password: ");
+                password = scanner.nextLine().trim();
+                if (!password.isEmpty()) {
+                    System.out.println("Password confirmed.");
+                    break;
+                } else {
+                    System.out.println("Password can`t be empty. Please try again.");
+                }
+            }
 
             JobProvider provider =  new JobProvider(organizationName, organizationType, sector, email, password);
             return JobProvider.addProvider(provider)? null : provider;
             
         } else {
 
-        	System.out.println("Enter Full Name: ");
-            String fulName = scanner.nextLine();
+        	// Full Name
+            String fullName;
+            while (true) {
+                System.out.println("Enter Full Name: ");
+                fullName = scanner.nextLine().trim();
+                if (!fullName.isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Full Name cannot be empty. Please enter your full name.");
+                }
+            }
 
-            System.out.println("Enter Email: ");
-            String email = scanner.nextLine();
+            // Email
+            String email;
+            while (true) {
+                System.out.println("Enter Email: ");
+                email = scanner.nextLine().trim();
+                if (!email.isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Email cannot be empty. Please enter your email.");
+                }
+            }
 
-            System.out.println("Enter Phone Number: ");
-            String phoneNumber = scanner.nextLine();
+            // Phone Number
+            String phoneNumber;
+            while (true) {
+                System.out.println("Enter Phone Number: ");
+                phoneNumber = scanner.nextLine().trim();
+                if (!phoneNumber.isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Phone Number cannot be empty. Please enter your phone number.");
+                }
+            }
 
-            System.out.println("Enter Birth Date (YYYY-MM-DD): ");
-            LocalDate birthDate = LocalDate.parse(scanner.nextLine());
+            // Birth Date
+            LocalDate birthDate;
+            while (true) {
+                System.out.println("Enter Birth Date (YYYY-MM-DD): ");
+                try {
+                    birthDate = LocalDate.parse(scanner.nextLine().trim());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid date format. Please enter your birth date in YYYY-MM-DD format.");
+                }
+            }
 
-            System.out.println("Enter Gender (M/F): ");
-            char gender = scanner.nextLine().charAt(0);
+            // Gender
+            char gender;
+            while (true) {
+                System.out.println("Enter Gender (M/F): ");
+                String genderInput = scanner.nextLine().trim().toUpperCase();
+                if (genderInput.equals("M") || genderInput.equals("F")) {
+                    gender = genderInput.charAt(0);
+                    break;
+                } else {
+                    System.out.println("Invalid input. Please enter 'M' for Male or 'F' for Female.");
+                }
+            }
 
+            // Skills
             System.out.println("Enter Skills (comma-separated): ");
             String skillsInput = scanner.nextLine();
             List<String> skills = new ArrayList<>();
@@ -78,19 +168,46 @@ public class AuthorizationService {
                 skills.add(skill.trim());
             }
 
-            System.out.println("Enter Password: ");
-            String password = scanner.nextLine();
+            // Password verification
+            String password;
+            while (true) {
+                System.out.println("Enter Password: ");
+                password = scanner.nextLine().trim();
+                if (!password.isEmpty()) {
+                    System.out.println("Password confirmed.");
+                    break;
+                } else {
+                    System.out.println("Password can`t be empty. Please try again.");
+                }
+            }
             
-            JobSeeker seeker = new JobSeeker(fulName, email, phoneNumber, birthDate, gender, skills, password);
+            JobSeeker seeker = new JobSeeker(fullName, email, phoneNumber, birthDate, gender, skills, password);
             return JobSeeker.addJobSeeker(seeker) ? null : seeker;
         }
     }
 
     private Object login(Object user) {
-        System.out.println("Enter Email: ");
-        String email = scanner.nextLine();
-        System.out.println("Enter Password: "); 
-        String password = scanner.nextLine();
+    	String email;
+        while (true) {
+            System.out.println("Enter Email: ");
+            email = scanner.nextLine().trim();
+            if (!email.isEmpty()) {
+                break;
+            } else {
+                System.out.println("Email cannot be empty. Please enter your email.");
+            }
+        }
+        String password;
+        while (true) {
+            System.out.println("Enter Password: ");
+            password = scanner.nextLine().trim();
+            if (!password.isEmpty()) {
+                System.out.println("Password confirmed.");
+                break;
+            } else {
+                System.out.println("Password can`t be empty. Please try again.");
+            }
+        }
 
         if (user instanceof JobProvider) {
             List<JobProvider> providers = JobProvider.getAllProviders();
@@ -171,9 +288,4 @@ public class AuthorizationService {
         return option;
     }
 
-    public void closeScanner() {
-        if (scanner != null) {
-            scanner.close();
-        }
-    }
 }

@@ -19,8 +19,10 @@ class Part {
     public static void main(String args[]) {
     	JobProvider provider1 = new JobProvider("TechCorp", "Company", "Technology", "contact@techcorp.com", "password123" );
     	JobProvider.addProvider(provider1);
+    	
         JobProvider provider2 = new JobProvider("EduInstitute", "Institute", "Education", "info@edu.com", "securePass");
         JobProvider.addProvider(provider2);
+        
         JobSeeker seeker1 = new JobSeeker("Alice Johnson", "alice@example.com", "123-456-7890",
                                           LocalDate.of(1990, 5, 20), 'F', Arrays.asList("Java", "Python", "SQL"), "alicePass");
         JobSeeker.addJobSeeker(seeker1);
@@ -29,14 +31,14 @@ class Part {
         JobSeeker.addJobSeeker(seeker2);
         
         Job job1 = new Job("Software Engineer", "Develop and maintain software solutions", "New York",
-                           "123 Main St", "Suite 200", 30.0, Arrays.asList("Monday", "Wednesday", "Friday"),
+                           "123 Main St", "Suite 200", 30.0, Arrays.asList("Mon", "Wed", "Fri"),
                            "9am-5pm", provider1);
         Job.addJob(job1);
         Job job2 = new Job("Data Scientist", "Analyze data and build models", "San Francisco",
-                           "456 Market St", "Floor 3", 35.0, Arrays.asList("Tuesday", "Thursday"),
+                           "456 Market St", "Floor 3", 35.0, Arrays.asList("Tue", "Thu"),
                            "10am-6pm", provider1);
         Job job3 = new Job("Teacher", "Teach math and science", "Boston",
-                           "789 Broadway", "", 25.0, Arrays.asList("Monday", "Tuesday", "Thursday"),
+                           "789 Broadway", "", 25.0, Arrays.asList("Mon", "Tue", "Thur"),
                            "8am-3pm", provider2);
         Job.addJob(job2);
         Job.addJob(job3);
