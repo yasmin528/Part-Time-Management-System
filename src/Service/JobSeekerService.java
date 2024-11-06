@@ -50,7 +50,7 @@ public class JobSeekerService {
 				int applyChoice = scanner.nextInt();
 				scanner.nextLine();
 
-				if (applyChoice < jobs.size() && applyChoice > 0) {
+				if (applyChoice < jobs.size() + 1 && applyChoice > 0) {
 					Application application = new Application(jobSeeker, jobs.get(applyChoice - 1));
 					boolean success = Application.addApplication(application);
 					if(success) {
